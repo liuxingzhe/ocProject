@@ -7,8 +7,7 @@
   </parent>
   <artifactId>ocPortal</artifactId>
   <packaging>war</packaging>
-<dependencies>
-		
+	<dependencies>
 		<dependency>
 			<groupId>com.online.college</groupId>
 			<artifactId>ocCommon</artifactId>
