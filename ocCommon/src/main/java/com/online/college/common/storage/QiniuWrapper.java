@@ -44,7 +44,7 @@ public class QiniuWrapper {
 	static{
 		Properties properties =PropertiesUtil.getDefaultProperties();
 		auth = Auth.create(properties.getProperty(CONFIG_AK), properties.getProperty(CONFIG_SK));
-		Configuration cfg = new Configuration(Zone.zone2());//设置空间上传域名
+		Configuration cfg = new Configuration(Zone.zone0());//设置空间上传域名
 		uploadManager = new UploadManager(cfg);
 		bucketName=properties.getProperty(CONFIG_BUCKET);
 		String cdn = properties.getProperty(CONFIG_CDN);

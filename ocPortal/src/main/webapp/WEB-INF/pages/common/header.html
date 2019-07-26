@@ -12,7 +12,8 @@
 		<nav class="header-nav" style="float:right">
 			<@shiro.guest>
 			<a href="#myModal" class="header-nav-item"  data-toggle="modal" onclick="login();"  style="margin-right:0px;font-size:14px;">登录</a>
-			<a href="#myModal" class="header-nav-item" data-toggle="modal" onclick="registe();"  style="margin-left:0px;font-size:14px;">注册</a>
+		<!-- 	<a href="#myModal" class="header-nav-item" data-toggle="modal" onclick="registe();"  style="margin-left:0px;font-size:14px;">注册</a> -->
+			<a href="${s.base}/auth/register.html" class="header-nav-item" data-toggle="modal"   style="margin-left:0px;font-size:14px;">注册</a>
 			</@shiro.guest>
 			
 			<@shiro.user>
