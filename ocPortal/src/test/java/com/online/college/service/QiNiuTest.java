@@ -15,14 +15,14 @@ public class QiNiuTest extends TestCase {
 	
 	public void testImages() {
 		//测试上传图片
-//		byte[] buff = CommonUtil.getFileBytes(new File("I://c4.jpg"));
-//		String key = QiniuStorage.uploadImage(buff);
-//		System.out.println("key = " + key);
+		byte[] buff = CommonUtil.getFileBytes(new File("I:\\eclipse-workspace\\ocProject\\ocPortal\\src\\main\\webapp\\res\\i\\c3.jpg"));
+		String key = QiniuStorage.uploadImage(buff);
+		System.out.println("key = " + key);
 		
-		String key = "/default/all/0/0cea05ba7665485293942c2bded82f55.jpeg";
+		//String key = "/default/all/0/0cea05ba7665485293942c2bded82f55.jpeg";
 		//测试下载图片
-		String url = QiniuStorage.getUrl(key);
-		System.out.println("url = " + url);
+//		String url = QiniuStorage.getUrl(key);
+//		System.out.println("url = " + url);
 //		
 //		//测试下载不同大小的图片
 //		url = QiniuStorage.getUrl(key,ThumbModel.THUMB_256);

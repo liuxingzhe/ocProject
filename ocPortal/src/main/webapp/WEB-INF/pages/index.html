@@ -8,98 +8,34 @@
 		<meta name="description" content="">
 		<title>在线网校学习平台</title>
 		<#include "./common/res.html">
-				
-		<!--[if lt IE 9]>
-		  <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		  <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-		
-		<link rel="icon" type="image/png" href="${s.base}/res/i/ico.png" sizes="16x16">
-		<script type="text/javascript">
-		CONETXT_PATH = '';
-		</script>
 	</head>
-
 	<body>
 		<#include "./common/header.html">
-		<script type="text/javascript">
-			function login(){
-				$('#loginTitle').css('color','#337Ab7');
-				$('#loginForm').show();
-				$('#registeTitle').css('color','#000');
-				$('#registeForm').hide();
-			}
-			function registe(){
-				$('#loginTitle').css('color','#000');
-				$('#loginForm').hide();
-				$('#registeTitle').css('color','#337Ab7');
-				$('#registeForm').show();
-			}
-			$(function(){
-				$("#userdetail").popover({
-		            trigger:'manual',
-		            placement : 'bottom',
-		            html: 'true',
-		            content : '<div style="width:300px;height:300px;"></div>',
-		            animation: false
-		        }).on("mouseenter", function () {
-		            var _this = this;
-		            $(this).popover("show");
-		            $(this).siblings(".popover").on("mouseleave", function () {
-		                $(_this).popover('hide');
-		            });
-		        }).on("mouseleave", function () {
-		            var _this = this;
-		            setTimeout(function () {
-		                if (!$(".popover:hover").length) {
-		                    $(_this).popover("hide")
-		                }
-		            }, 0);
-		        });
-				//课程分类展示 
-				$(".category").popover({
-		            trigger:'manual',
-		            placement : 'right',
-		            html: 'true',
-		            content : '',
-		            animation: false
-		        }).on("mouseenter", function () {
-		            var cid = $(this).attr('c-id');
-		            $('#' + cid).show();
-		            $('#' + cid).hover(function(){
-		            	$('#' + cid).show();
-		            },function(){
-		            	$('#' + cid).hide();
-					});
-		        }).on("mouseleave", function () {
-		            var cid = $(this).attr('c-id');
-		            $('#' + cid).hide();
-		        });
-			});
-		</script>
-		
-		
 		<div class="f-main">
 			<!-- 轮播 分类-start -->
 			<div class="clearfix">
 				<div class=main-category>
 					<div class="main-bg">
-						<div class="main-bg-item " style="background-image: url('${s.base}/res/i/c1.jpg'); ">
-							<div class="main-title-1"></div>
-						</div>
-		
-						<div class="main-bg-item " style="background-image: url('${s.base}/res/i/c2.jpg'); ">
-							<div class="main-title-2"></div>
-						</div>
-		
-						<div class="main-bg-item " style="background-image: url('${s.base}/res/i/c3.jpg'); ">
-							<div class="main-title-3"></div>
-						</div>
+						<#if carouselList?? && carouselList?size gt 0>
+						<#list carouselList as item>
+						<a href="${item.url!''}">
+							<div class="main-bg-item"  style='background-image: url("${item.picture!}"); '></div>
+						</a>
+						</#list>
+						</#if>
 					</div>
 		
 					<div class="f-nav-box">
 						<div class="bg-nav">
-							<a class="cur"></a> <a></a> <a></a>
+							<#if carouselList?? && carouselList?size gt 0>
+							<#list carouselList as item>
+								<#if item_index == 0>
+								<a class="cur"></a> 
+								<#else>
+								<a></a> 
+								</#if>
+							</#list>
+							</#if>
 						</div>
 					</div>
 					
@@ -492,36 +428,39 @@
 			</div>
 			<!--名校讲师-end -->
 		</div>
-		
 		<#include "./common/footer.html">
 	</body>
-	
-	<script>
-	$(function(){
-		var index = 0;
-		var timer = 4000;
-		$('.bg-nav a').click(function(){
-			index = $('.bg-nav a').index($(this));
-			rollBg(index);
-		});
-		$('.index-roll-item').click(function(){
-			index = $('.index-roll-item').index($(this));
-			rollBg(index);
-		});
-		var rollBg = function(i){
-			$('.main-bg-item').fadeOut(1000);
-			$($('.main-bg-item')[i]).fadeIn(1000);
-			$('.bg-nav a').removeClass('cur');
-			$($('.bg-nav a')[i]).addClass('cur');
-			$('.index-roll-item').removeClass('cur');
-			$($('.index-roll-item')[i]).addClass('cur');
-		}
-		setInterval(function(){
-			index += 1;
-			index = index%3;
-			rollBg(index);
-		}, timer);
-		
-	});
+	<script type="text/javascript">
+		$(function () {
+				<#if carouselList?? && carouselList?size gt 0>
+				var size = Number('${carouselList?size}');
+				<#else>
+				var size = 0;
+				</#if>
+				var index = 0;
+				var timer = 4000;
+				$('.bg-nav a').click(function(){
+					index = $('.bg-nav a').index($(this));
+					rollBg(index);
+				});
+				$('.index-roll-item').click(function(){
+					index = $('.index-roll-item').index($(this));
+					rollBg(index);
+				});
+				var rollBg = function(i){
+					$('.main-bg-item').fadeOut(1000);
+					$($('.main-bg-item')[i]).fadeIn(1000);
+					$('.bg-nav a').removeClass('cur');
+					$($('.bg-nav a')[i]).addClass('cur');
+					$('.index-roll-item').removeClass('cur');
+					$($('.index-roll-item')[i]).addClass('cur');
+				}
+				setInterval(function(){
+					index += 1;
+					index = index%3;
+					rollBg(index);
+				}, timer);
+				
+			});
 	</script>
 </html>
