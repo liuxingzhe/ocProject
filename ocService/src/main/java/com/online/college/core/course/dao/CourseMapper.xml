@@ -42,7 +42,7 @@
 		SELECT 
 		<include refid="All_Columns" />
 		FROM t_course 
-		<trim prefix="WHERE " prefixOverrides="AND |OR "> 
+		<trim prefix="WHERE " prefixOverrides="AND | OR "> 
 			<if test="type != null">
 				AND type = #{type, jdbcType=INTEGER}
 			</if>
