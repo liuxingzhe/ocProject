@@ -57,6 +57,7 @@ public class PortalController {
 		List<Course> actionCourseList = this.courseService.queryList(queryEntity);
 		mv.addObject("actionCourseList", actionCourseList);
 		
+		
 		//获取5门免费课推荐，根据权重（weight）进行排序
 		queryEntity.setFree(CourseEnum.FREE.value());//非免费的：实战课
 		List<Course> freeCourseList = this.courseService.queryList(queryEntity);
