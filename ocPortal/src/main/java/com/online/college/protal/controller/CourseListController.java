@@ -86,29 +86,30 @@ public class CourseListController {
 		mv.addObject("curCode", curCode);
 		mv.addObject("curSubCode", curSubCode);
 		
-//		//分页排序数据
-//		//分页的分类参数
-//		Course queryEntity = new Course();
-//		if(!"-1".equals(curCode)){
-//			queryEntity.setClassify(curCode);
-//		}
-//		if(!"-2".equals(curSubCode)){
-//			queryEntity.setSubClassify(curSubCode);
-//		}
-//		
-//		//排序参数
-//		if("pop".equals(sort)){//最热
-//			page.descSortField("studyCount");
-//		}else{
-//			sort = "last";
-//			page.descSortField("id");
-//		}
-//		mv.addObject("sort", sort);
-//		
-//		//分页参数
-//		queryEntity.setOnsale(CourseEnum.ONSALE.value());
-//		page = this.courseService.queryPage(queryEntity, page);
-//		mv.addObject("page", page);
+		//分页排序数据
+		//分页的分类参数
+		Course queryEntity = new Course();
+		if(!"-1".equals(curCode)){
+			queryEntity.setClassify(curCode);
+		}
+		if(!"-2".equals(curSubCode)){
+			queryEntity.setSubClassify(curSubCode);
+		}
+		
+		
+		//排序参数
+		if("pop".equals(sort)){//最热
+			page.descSortField("studyCount");
+		}else{
+			sort = "last";
+			page.descSortField("id");
+		}
+		mv.addObject("sort", sort);
+		
+		//分页参数
+		queryEntity.setOnsale(CourseEnum.ONSALE.value());
+		page = this.courseService.queryPage(queryEntity, page);
+		mv.addObject("page", page);
 		return mv;
 	}
 	
