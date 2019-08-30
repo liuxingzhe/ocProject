@@ -58,6 +58,7 @@ public class UserController {
 		//加载关注用户的动态
 		UserFollowStudyRecord queryEntity = new UserFollowStudyRecord();
 		queryEntity.setUserId(SessionContext.getUserId());
+		page.setPageSize(2);
 		page = userFollowsService.queryUserFollowStudyRecordPage(queryEntity, page);
 		
 		//处理用户头像

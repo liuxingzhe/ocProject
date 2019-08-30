@@ -93,7 +93,7 @@
 		tc.section_id , tc.create_time, tc.ref_content, t.name as course_name
 		FROM t_course t , t_course_comment tc 
 		WHERE t.id = tc.course_id
-		AND t.username = #{param1.username}
+		AND tc.username = #{param1.username}
 		AND tc.del = 0
 		ORDER BY tc.id DESC
 		LIMIT #{param2.startIndex, jdbcType=INTEGER} , #{param2.pageSize, jdbcType=INTEGER} 
