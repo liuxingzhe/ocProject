@@ -53,7 +53,7 @@ public class AuthController {
 			ModelAndView mv = new ModelAndView("auth/login");
 			mv.addObject("errcode", 1);
 			return mv;
-		}
+		} 
 		UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(),EncryptUtil.encodedByMD5(user.getPassword()));
 		try {
 			Subject currentUser = SecurityUtils.getSubject();
